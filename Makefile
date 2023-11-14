@@ -13,7 +13,7 @@ setup: .venv
 
 # Lint
 
-.black:
+black:
 	poetry run black --check --diff $(PROJECT)
 
 flake: .venv
