@@ -2,8 +2,11 @@ from fastapi import APIRouter, Depends, Header, Path
 
 from src.api.auth import check_authorization_token
 from src.api.dependencies import get_user_id
-from src.api.schemas import (ErrorMessage, HealthCheckResponse,
-                             UserRecommendationResponse)
+from src.api.schemas import (
+    ErrorMessage,
+    HealthCheckResponse,
+    UserRecommendationResponse,
+)
 from src.recommenders.recommender_register import RecommenderRegister
 
 router = APIRouter()
