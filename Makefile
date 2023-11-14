@@ -25,7 +25,7 @@ mypy: .venv
 pylint: .venv
 	poetry run pylint $(PROJECT)
 
-lint: isort flake mypy pylint
+lint: black flake mypy pylint
 
 
 # Test
