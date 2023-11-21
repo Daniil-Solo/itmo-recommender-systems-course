@@ -2,10 +2,7 @@ from src.exceptions import ModelNotFoundError
 from src.recommenders.base_recommender import BaseRecommender
 from src.recommenders.random_recommender import RandomRecommender
 
-
-RECOMMENDERS: list[type[BaseRecommender]] = [
-    RandomRecommender
-]
+RECOMMENDERS: list[type[BaseRecommender]] = [RandomRecommender]
 
 
 class RecommenderRegister:  # pylint: disable=too-few-public-methods
@@ -21,5 +18,4 @@ class RecommenderRegister:  # pylint: disable=too-few-public-methods
         for recommender in RECOMMENDERS:
             if model_name == recommender.MODEL_NAME:
                 return recommender()
-        else:
-            raise ModelNotFoundError()
+        raise ModelNotFoundError()

@@ -16,6 +16,7 @@ class ModelNotFoundError(RecSysServiceError):
     """
     Error accessing a non-existent model
     """
+
     DEFAULT_MESSAGE = "There is no user with this name"
 
     def __init__(
@@ -30,6 +31,7 @@ class UserNotFoundError(RecSysServiceError):
     """
     Error accessing a non-existent user
     """
+
     DEFAULT_MESSAGE = "There is no user with this id"
 
     def __init__(
@@ -44,6 +46,7 @@ class NoAuthTokenError(RecSysServiceError):
     """
     Error of missing authorization token
     """
+
     DEFAULT_MESSAGE = "There is no authorization token"
 
     def __init__(
@@ -58,6 +61,7 @@ class IncorrectAuthTokenError(RecSysServiceError):
     """
     Incorrect authorization token error
     """
+
     DEFAULT_MESSAGE = "Incorrect authorization token"
 
     def __init__(
