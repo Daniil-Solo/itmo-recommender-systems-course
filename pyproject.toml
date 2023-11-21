@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "itmo-recommender-systems"
+version = "0.1.0"
+description = ""
+authors = ["Daniil-Solo <daniil.solo1723@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+rectools = "^0.4.1"
+uvicorn = "^0.24.0.post1"
+fastapi = "^0.104.1"
+pydantic-settings = "^2.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^4.0.9"
+pylint = "^3.0.2"
+pytest = "^7.4.3"
+httpx = "^0.25.1"
+isort = "^5.12.0"
+black = "^23.11.0"
+flake8 = "^6.1.0"
+mypy = "^1.7.0"
+ipywidgets = "^8.1.1"
+pandas-stubs = "^2.1.1.230928"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
