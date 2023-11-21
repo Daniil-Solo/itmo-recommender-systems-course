@@ -3,7 +3,7 @@ from http import HTTPStatus
 
 class RecSysServiceError(Exception):
     """
-    Общая ошибка для приложения
+    Common error for service
     """
 
     def __init__(self, status_code: int, error_message: str = "") -> None:
@@ -14,51 +14,55 @@ class RecSysServiceError(Exception):
 
 class ModelNotFoundError(RecSysServiceError):
     """
-    Ошибка обращения к несуществующей модели
+    Error accessing a non-existent model
     """
+    DEFAULT_MESSAGE = "There is no user with this name"
 
     def __init__(
         self,
         status_code: int = HTTPStatus.NOT_FOUND,
-        error_message: str = "Модели с таким названием не существует",
+        error_message: str = DEFAULT_MESSAGE,
     ) -> None:
         super().__init__(status_code, error_message)
 
 
 class UserNotFoundError(RecSysServiceError):
     """
-    Ошибка обращения к несуществующему пользователю
+    Error accessing a non-existent user
     """
+    DEFAULT_MESSAGE = "There is no user with this id"
 
     def __init__(
         self,
         status_code: int = HTTPStatus.NOT_FOUND,
-        error_message: str = "Пользователя с таким id не существует",
+        error_message: str = DEFAULT_MESSAGE,
     ) -> None:
         super().__init__(status_code, error_message)
 
 
 class NoAuthTokenError(RecSysServiceError):
     """
-    Ошибка отсутствия аутентификационного токена
+    Error of missing authorization token
     """
+    DEFAULT_MESSAGE = "There is no authorization token"
 
     def __init__(
         self,
         status_code: int = HTTPStatus.UNAUTHORIZED,
-        error_message: str = "Отсутствует токен авторизации",
+        error_message: str = DEFAULT_MESSAGE,
     ) -> None:
         super().__init__(status_code, error_message)
 
 
 class IncorrectAuthTokenError(RecSysServiceError):
     """
-    Ошибка неправильного аутентификационного токена
+    Incorrect authorization token error
     """
+    DEFAULT_MESSAGE = "Incorrect authorization token"
 
     def __init__(
         self,
         status_code: int = HTTPStatus.UNAUTHORIZED,
-        error_message: str = "Неверный токен авторизации",
+        error_message: str = DEFAULT_MESSAGE,
     ) -> None:
         super().__init__(status_code, error_message)

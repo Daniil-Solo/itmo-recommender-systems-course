@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+from src.exceptions import ModelNotFoundError
 from src.config import settings
 
 
@@ -6,7 +7,7 @@ def test_incorrect_model_name(client: TestClient) -> None:
     user_id = 1
     response = client.get(f"/reco/some_model_name/{user_id}", headers={"Authorization": f"Bearer {settings.token}"})
     assert response.status_code == 404
-    assert response.json() == {'message': "Модели с таким названием не существует"}
+    assert response.json() == {'message': ModelNotFoundError.DEFAULT_MESSAGE}
 
 
 def test_correct_model_name(client: TestClient) -> None:
