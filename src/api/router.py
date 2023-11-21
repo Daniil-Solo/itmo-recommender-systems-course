@@ -15,7 +15,7 @@ router = APIRouter()
 @router.get("/health", tags=["Health"], response_model=HealthCheckResponse)
 async def health_check():
     """
-    Проверяет, работает ли сервис
+    Checks if the service is working
     """
     return HealthCheckResponse()
 
@@ -32,7 +32,8 @@ async def get_recommendations(
     authorization: str = Header(None),
 ):
     """
-    Формирует рекомендации модели model_name для пользователя с user_id
+    Generates models recommendations with name
+    'model_name' for a user with id 'user_id'
     """
     check_authorization_token(authorization)
     recommender = RecommenderRegister.get_recommender_by_model_name(model_name)
