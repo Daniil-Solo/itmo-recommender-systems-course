@@ -108,14 +108,14 @@ class VisualAnalyzer:
     def __init__(  # pylint: disable=too-many-arguments
         self,
         model: ModelBase,
-        interactions_df: pd.DataFrame,
+        dataset: Dataset,
         user_id_list: List[int],
         item_data: List[str],
         k: int,
         items_df: pd.DataFrame,
     ) -> None:
         self._model = model
-        self._interactions_df = interactions_df
+        self._dataset = dataset
         self._user_id_list = user_id_list
         if "item_id" not in item_data:
             item_data.insert(0, "item_id")
@@ -127,10 +127,9 @@ class VisualAnalyzer:
         """
         Gets recommendations
         """
-        dataset = Dataset.construct(self._interactions_df)
         recommendations = self._model.recommend(
             users=self._user_id_list,
-            dataset=dataset,
+            dataset=self._dataset,
             k=self._k_recommendations,
             filter_viewed=True,
         )
@@ -145,8 +144,8 @@ class VisualAnalyzer:
         """
         recommendations = self.get_recommendations()
         history_df = (
-            self._interactions_df[
-                self._interactions_df.user_id.isin(self._user_id_list)
+            self._dataset.interactions.df[
+                self._dataset.interactions.df.user_id.isin(self._user_id_list)
             ]
             .merge(self._items_df[self._item_data], on="item_id")
             .sort_values("user_id")
