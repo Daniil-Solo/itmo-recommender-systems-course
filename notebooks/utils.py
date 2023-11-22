@@ -17,7 +17,7 @@ class MetricCalculator:
     Class for training and testing recommenders
     """
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-arguments
         self,
         models: Dict[str, ModelBase],
         metrics: Dict[str, MetricAtK],
@@ -45,7 +45,9 @@ class MetricCalculator:
         result_df.columns = [v[0] for v in result_df.columns]
         return result_df
 
-    def generate_report(self, show_logs: bool = False) -> DataFrame:
+    def generate_report(  # pylint: disable=too-many-locals
+        self, show_logs: bool = False
+    ) -> DataFrame:
         """
         Runs training, testing initialized models
         and calculating metrics on k
@@ -103,7 +105,7 @@ class VisualAnalyzer:
     Class for analysis of history and recommendations items
     """
 
-    def __init__(
+    def __init__(  # pylint: disable=too-many-arguments
         self,
         model: ModelBase,
         interactions_df: pd.DataFrame,
