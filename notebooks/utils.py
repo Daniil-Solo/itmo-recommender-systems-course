@@ -23,11 +23,13 @@ class MetricCalculator:
         metrics: Dict[str, MetricAtK],
         splitter: Splitter,
         k: int,
+        interactions: Interactions,
     ) -> None:
         self._models = models
         self._metrics = metrics
         self._splitter = splitter
         self._k_recommendations = k
+        self._interactions = interactions
 
     @staticmethod
     def prepare_dataframe(data: List[Dict]) -> pd.DataFrame:
@@ -43,21 +45,21 @@ class MetricCalculator:
         result_df.columns = [v[0] for v in result_df.columns]
         return result_df
 
-    def generate_report(
-        self, interactions: Interactions, show_logs: bool = False
-    ) -> DataFrame:
+    def generate_report(self, show_logs: bool = False) -> DataFrame:
         """
         Runs training, testing initialized models
         and calculating metrics on k
         Returns pandas.DataFrame with results aggregated by folds
         """
         data = []
-        fold_iter = self._splitter.split(interactions, collect_fold_stats=True)
+        fold_iterator = self._splitter.split(
+            self._interactions, collect_fold_stats=True
+        )
 
-        for train_ids, test_ids, fold_info in fold_iter:
-            train_df = interactions.df.iloc[train_ids]
+        for train_ids, test_ids, fold_info in fold_iterator:
+            train_df = self._interactions.df.iloc[train_ids]
             dataset = Dataset.construct(train_df)
-            test_df = interactions.df.iloc[test_ids][Columns.UserItem]
+            test_df = self._interactions.df.iloc[test_ids][Columns.UserItem]
             test_users = np.unique(test_df[Columns.User])
             catalog = train_df[Columns.Item].unique()
 
@@ -94,3 +96,60 @@ class MetricCalculator:
                 )
 
         return self.prepare_dataframe(data)
+
+
+class VisualAnalyzer:
+    """
+    Class for analysis of history and recommendations items
+    """
+
+    def __init__(
+        self,
+        model: ModelBase,
+        interactions_df: pd.DataFrame,
+        user_id_list: List[int],
+        item_data: List[str],
+        k: int,
+        items_df: pd.DataFrame,
+    ) -> None:
+        self._model = model
+        self._interactions_df = interactions_df
+        self._user_id_list = user_id_list
+        if "item_id" not in item_data:
+            item_data.insert(0, "item_id")
+        self._item_data = item_data
+        self._k_recommendations = k
+        self._items_df = items_df
+
+    def get_recommendations(self):
+        """
+        Gets recommendations
+        """
+        dataset = Dataset.construct(self._interactions_df)
+        recommendations = self._model.recommend(
+            users=self._user_id_list,
+            dataset=dataset,
+            k=self._k_recommendations,
+            filter_viewed=True,
+        )
+        return recommendations
+
+    def get_history_and_recommendation_dataframes(
+        self,
+    ) -> tuple[pd.DataFrame, pd.DataFrame]:
+        """
+        Gets dataframes with interactions and items for
+        history data and recommendations
+        """
+        recommendations = self.get_recommendations()
+        history_df = (
+            self._interactions_df[
+                self._interactions_df.user_id.isin(self._user_id_list)
+            ]
+            .merge(self._items_df[self._item_data], on="item_id")
+            .sort_values("user_id")
+        )
+        reco_df = recommendations.merge(
+            self._items_df[self._item_data], on="item_id"
+        ).sort_values(["user_id", "rank"])
+        return history_df, reco_df
