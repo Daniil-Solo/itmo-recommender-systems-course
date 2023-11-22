@@ -2,6 +2,7 @@ VENV := .venv
 
 PROJECT := src
 TESTS := tests
+NOTEBOOKS := notebooks
 
 # Prepare
 
@@ -14,16 +15,16 @@ setup: .venv
 # Lint
 
 black:
-	poetry run black --check --diff $(PROJECT)
+	poetry run black --check --diff $(PROJECT) $(NOTEBOOKS)
 
 flake: .venv
-	poetry run flake8 $(PROJECT)
+	poetry run flake8 $(PROJECT) $(NOTEBOOKS)
 
 mypy: .venv
 	poetry run mypy $(PROJECT)
 
 pylint: .venv
-	poetry run pylint $(PROJECT)
+	poetry run pylint $(PROJECT) $(NOTEBOOKS)
 
 lint: black flake mypy pylint
 
