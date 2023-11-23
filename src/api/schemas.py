@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class HealthCheckResponse(BaseModel):
     """
-    Схема ответа для проверки работы сервиса
+    Response scheme for checking the health of the service
     """
 
     status: str = "ok"
@@ -11,7 +11,7 @@ class HealthCheckResponse(BaseModel):
 
 class UserRecommendationResponse(BaseModel):
     """
-    Схема ответа рекомендаций для пользователя
+    The scheme of the recommendations response for the user
     """
 
     user_id: int
@@ -20,7 +20,7 @@ class UserRecommendationResponse(BaseModel):
 
 class ErrorMessage(BaseModel):
     """
-    Схема ответа при ошибке
+    Error response scheme
     """
 
     message: str

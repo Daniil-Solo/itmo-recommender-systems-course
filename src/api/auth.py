@@ -6,8 +6,8 @@ from src.exceptions import IncorrectAuthTokenError, NoAuthTokenError
 
 def check_authorization_token(authorization: Optional[str]) -> None:
     """
-    Проверяет наличие и валидность токена авторизации
-    Если токен не подходит, то выбрасывается ошибка с сообщением
+    Checks the availability and validity of the authorization token
+    If the token is not correct, then an error message is raised
     """
     if not authorization:
         raise NoAuthTokenError()
