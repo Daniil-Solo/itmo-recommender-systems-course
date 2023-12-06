@@ -37,7 +37,7 @@ async def get_recommendations(
     'model_name' for a user with id 'user_id'
     """
     check_authorization_token(authorization)
-    if request.app.state.recommender and request.app.state.recommender.MODEL_NAME == model_name:
+    if hasattr(request.app.state, 'recommender') and request.app.state.recommender.MODEL_NAME == model_name:
         recommender = request.app.state.recommender
     else:
         recommender = RecommenderRegister.get_recommender_by_model_name(model_name)
