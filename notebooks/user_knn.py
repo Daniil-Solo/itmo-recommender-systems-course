@@ -84,6 +84,7 @@ class UserKnn:
         self.item_idf = pd.DataFrame.from_dict(
             item_counter, orient="index", columns=["doc_freq"]
         ).reset_index()
+        # pylint: disable=unsupported-assignment-operation, unsubscriptable-object
         self.item_idf[self.IDF_COLUMN] = self.item_idf["doc_freq"].apply(
             lambda x: self.idf(len(dataframe), x)
         )
