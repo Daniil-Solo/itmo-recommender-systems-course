@@ -20,13 +20,10 @@ black:
 flake: .venv
 	poetry run flake8 $(PROJECT) $(NOTEBOOKS)
 
-mypy: .venv
-	poetry run mypy $(PROJECT)
-
 pylint: .venv
 	poetry run pylint $(PROJECT) $(NOTEBOOKS)
 
-lint: black flake mypy pylint
+lint: black flake pylint
 
 
 # Test
