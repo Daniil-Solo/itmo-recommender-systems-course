@@ -14,6 +14,4 @@ class BaseRecommender(ABC):  # pylint: disable=too-few-public-methods
         Returns a list of item IDs recommended to the user
         with id 'user_id'
         """
-        raise NotImplementedError(
-            "This method should be implemented in a derived class"
-        )
+        raise NotImplementedError("This method should be implemented in a derived class")

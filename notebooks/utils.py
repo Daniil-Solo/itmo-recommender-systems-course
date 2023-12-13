@@ -37,10 +37,7 @@ class MetricCalculator:
         Transforms list of dictionaries with fold results to DataFrame
         """
         result_df = (
-            pd.DataFrame(data)
-            .drop(columns="fold")
-            .groupby(["model"], sort=False)
-            .agg(["mean"])
+            pd.DataFrame(data).drop(columns="fold").groupby(["model"], sort=False).agg(["mean"])
         )
         result_df.columns = [v[0] for v in result_df.columns]
         return result_df
@@ -54,9 +51,7 @@ class MetricCalculator:
         Returns pandas.DataFrame with results aggregated by folds
         """
         data = []
-        fold_iterator = self._splitter.split(
-            self._interactions, collect_fold_stats=True
-        )
+        fold_iterator = self._splitter.split(self._interactions, collect_fold_stats=True)
 
         for train_ids, test_ids, fold_info in fold_iterator:
             train_df = self._interactions.df.iloc[train_ids]
@@ -150,7 +145,7 @@ class VisualAnalyzer:
             .merge(self._items_df[self._item_data], on="item_id")
             .sort_values("user_id")
         )
-        reco_df = recommendations.merge(
-            self._items_df[self._item_data], on="item_id"
-        ).sort_values(["user_id", "rank"])
+        reco_df = recommendations.merge(self._items_df[self._item_data], on="item_id").sort_values(
+            ["user_id", "rank"]
+        )
         return history_df, reco_df
