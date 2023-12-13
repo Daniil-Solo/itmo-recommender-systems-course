@@ -30,7 +30,9 @@ jobs:
         run: poetry install
 
       - name: Install extra dependencies
-        run: python -m pip install --no-use-pep517 lightfm
+        run: |
+          python -m pip install --upgrade pip setuptools wheel
+          python -m pip install --no-use-pep517 lightfm
 
       - name: Run tests
         run: make test
