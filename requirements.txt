@@ -1,0 +1,6 @@
+rectools==0.4.1
+uvicorn==0.24.0
+fastapi==0.104.1
+pydantic-settings==2.1.0
+lightfm==1.17
+faiss-cpu==1.7.4
