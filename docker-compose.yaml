@@ -1,0 +1,17 @@
+version: "3.2"
+services:
+  api:
+    build: .
+    command: uvicorn src.app:app --host 0.0.0.0 --port 5000 --reload
+    env_file:
+      - .env
+    ports:
+      - 5000:5000
+    networks:
+      - mynet
+    volumes:
+      - ./src:/usr/app/src
+
+networks:
+  mynet:
+    driver: bridge
