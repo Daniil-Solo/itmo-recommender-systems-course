@@ -1,0 +1,11 @@
+services:
+  jupyter:
+    image: jupyter/datascience-notebook:python-3.10.11
+    container_name: jupyter
+    ports:
+      - 8889:8888
+    environment:
+      JUPYTER_ENABLE_LAB: "yes"
+      JUPYTER_TOKEN: "docker"
+    volumes:
+      - .:/home/jovyan/notebooks
