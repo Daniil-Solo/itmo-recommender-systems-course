@@ -11,6 +11,9 @@ rectools = "^0.4.1"
 uvicorn = "^0.24.0.post1"
 fastapi = "^0.104.1"
 pydantic-settings = "^2.1.0"
+faiss-cpu = "^1.7.4"
+setuptools = "^69.0.2"
+wheel = "^0.42.0"
 
 
 [tool.poetry.group.dev.dependencies]
