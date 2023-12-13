@@ -24,7 +24,7 @@ class HNSWLightFMRecommender(FilterViewedAndPopularRecommender):
 
     MODEL_NAME = "hnsw_lightfm"
 
-    # pylint: disable=duplicate-code
+    # pylint: disable=duplicate-code, no-value-for-parameter
     def __init__(self):
         super().__init__()
         self.load_artefacts(

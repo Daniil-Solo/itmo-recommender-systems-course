@@ -30,6 +30,7 @@ class FilterViewedAndPopularRecommender(BaseRecommender):
     Filtering by viewed items
     Adding popular items
     """
+
     def __init__(self):
         self.top_items = None
         self.user_item_matrix = None
