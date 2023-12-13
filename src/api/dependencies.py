@@ -1,6 +1,8 @@
 from fastapi import Path
 
 from src.exceptions import UserNotFoundError
+from src.recommenders.base_recommender import BaseRecommender
+from src.recommenders.lightfm_recommender import LightFMRecommender
 
 
 def get_user_id(user_id: int = Path()) -> int:
@@ -11,3 +13,10 @@ def get_user_id(user_id: int = Path()) -> int:
     if user_id > 10**9:
         raise UserNotFoundError()
     return user_id
+
+
+def get_actual_recommender() -> BaseRecommender:
+    """
+    Gets actual recommender (for bot ddos)
+    """
+    return LightFMRecommender()
