@@ -2,8 +2,16 @@ from src.exceptions import ModelNotFoundError
 from src.recommenders.base_recommender import BaseRecommender
 from src.recommenders.random_recommender import RandomRecommender
 from src.recommenders.user_knn_recommender import UserKnnTFIDFRecommender
+from src.recommenders.lightfm_recommender import LightFMRecommender
+from src.recommenders.hnsw_lightfm_recommender import HNSWLightFMRecommender
 
-RECOMMENDERS: list[type[BaseRecommender]] = [RandomRecommender, UserKnnTFIDFRecommender]
+
+RECOMMENDERS: list[type[BaseRecommender]] = [
+    RandomRecommender,
+    UserKnnTFIDFRecommender,
+    LightFMRecommender,
+    HNSWLightFMRecommender,
+]
 
 
 class RecommenderRegister:  # pylint: disable=too-few-public-methods

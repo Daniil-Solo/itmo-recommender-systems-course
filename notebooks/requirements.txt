@@ -1,0 +1,4 @@
+rectools==0.4.2
+lightfm==1.17
+optuna==3.4.0
+faiss-cpu==1.7.4

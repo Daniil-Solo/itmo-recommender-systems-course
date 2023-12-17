@@ -11,7 +11,7 @@ rectools = "^0.4.1"
 uvicorn = "^0.24.0.post1"
 fastapi = "^0.104.1"
 pydantic-settings = "^2.1.0"
-seaborn = "^0.13.0"
+faiss-cpu = "^1.7.4"
 
 
 [tool.poetry.group.dev.dependencies]
