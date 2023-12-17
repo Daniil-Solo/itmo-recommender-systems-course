@@ -43,8 +43,6 @@ async def get_recommendations(
     ):
         recommender = request.app.state.recommender
     else:
-        recommender = RecommenderRegister.get_recommender_by_model_name(
-            model_name
-        )
+        recommender = RecommenderRegister.get_recommender_by_model_name(model_name)
     items = recommender.predict(user_id)
     return UserRecommendationResponse(user_id=user_id, items=items)

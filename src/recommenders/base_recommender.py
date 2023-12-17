@@ -108,6 +108,4 @@ class FilterViewedAndPopularRecommender(BaseRecommender):
         """
         Gets recommendations
         """
-        raise NotImplementedError(
-            "This method should be implemented in a derived class"
-        )
+        raise NotImplementedError("This method should be implemented in a derived class")

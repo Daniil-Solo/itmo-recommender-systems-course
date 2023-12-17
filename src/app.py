@@ -34,6 +34,4 @@ async def handle_rec_sys_service_errors(_: Request, exc: RecSysServiceError):
     """
     Handles service errors
     """
-    return JSONResponse(
-        content={"message": exc.error_message}, status_code=exc.status_code
-    )
+    return JSONResponse(content={"message": exc.error_message}, status_code=exc.status_code)
