@@ -10,7 +10,7 @@ RECOMMENDERS: list[type[BaseRecommender]] = [
     RandomRecommender,
     UserKnnTFIDFRecommender,
     LightFMRecommender,
-    HNSWLightFMRecommender
+    HNSWLightFMRecommender,
 ]
 
 

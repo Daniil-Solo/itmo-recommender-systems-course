@@ -46,11 +46,7 @@ class HNSWLightFMRecommender(FilterViewedAndPopularRecommender):
         """
         Gets recommendations using HNSW-index on LightFM-embeddings
         """
-        user_vector = self.user_embeddings[
-            self.user_mappings[str(user_id)]
-        ].reshape(1, -1)
+        user_vector = self.user_embeddings[self.user_mappings[str(user_id)]].reshape(1, -1)
         _, indexes = self.index.search(user_vector, k)
-        item_id_list = [
-            self.item_inv_mappings[str(ind)] for ind in indexes.reshape(-1)
-        ]
+        item_id_list = [self.item_inv_mappings[str(ind)] for ind in indexes.reshape(-1)]
         return item_id_list

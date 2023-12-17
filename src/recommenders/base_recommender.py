@@ -19,9 +19,7 @@ class BaseRecommender(ABC):  # pylint: disable=too-few-public-methods
         Returns a list of item IDs recommended to the user
         with id 'user_id'
         """
-        raise NotImplementedError(
-            "This method should be implemented in a derived class"
-        )
+        raise NotImplementedError("This method should be implemented in a derived class")
 
 
 class FilterViewedAndPopularRecommender(BaseRecommender):
@@ -68,9 +66,7 @@ class FilterViewedAndPopularRecommender(BaseRecommender):
                 internal_user_id, settings.n_returned_items + len(viewed_items)
             )
             recommended_items = [
-                item_id
-                for item_id in recommended_items
-                if item_id not in viewed_items
+                item_id for item_id in recommended_items if item_id not in viewed_items
             ]
         except KeyError:
             pass
@@ -83,23 +79,16 @@ class FilterViewedAndPopularRecommender(BaseRecommender):
         Gets viewed items
         """
         viewed_items = np.arange(len(self.item_inv_mappings))[
-            self.user_item_matrix[internal_user_id, :].toarray().reshape(-1)
-            > 0
+            self.user_item_matrix[internal_user_id, :].toarray().reshape(-1) > 0
         ]
-        return {
-            self.item_inv_mappings[str(item_id)] for item_id in viewed_items
-        }
+        return {self.item_inv_mappings[str(item_id)] for item_id in viewed_items}
 
     def add_popular_items(self, recommended_items: list[int]) -> list[int]:
         """
         Add new popular items for recommendations
         """
         recommended_items.extend(
-            [
-                item_id
-                for item_id in self.top_items
-                if item_id not in recommended_items
-            ]
+            [item_id for item_id in self.top_items if item_id not in recommended_items]
         )
         return recommended_items[: settings.n_returned_items]
 
