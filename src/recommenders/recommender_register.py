@@ -5,6 +5,7 @@ from src.recommenders.user_knn_recommender import UserKnnTFIDFRecommender
 from src.recommenders.lightfm_recommender import LightFMRecommender
 from src.recommenders.hnsw_lightfm_recommender import HNSWLightFMRecommender
 from src.recommenders.autoencoder_recommender import AutoEncoderRecommender
+from src.recommenders.dssm_recommender import DSSMRecommender
 
 
 RECOMMENDERS: list[type[BaseRecommender]] = [
@@ -12,7 +13,8 @@ RECOMMENDERS: list[type[BaseRecommender]] = [
     UserKnnTFIDFRecommender,
     LightFMRecommender,
     HNSWLightFMRecommender,
-    AutoEncoderRecommender
+    AutoEncoderRecommender,
+    DSSMRecommender
 ]
 
 
