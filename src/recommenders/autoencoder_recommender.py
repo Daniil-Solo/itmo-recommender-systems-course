@@ -21,6 +21,9 @@ MODEL_USER_ITEM_MATRIX_PATH = f"{DIR_PATH}/autoencoder_user_item_matrix.npz"
 
 
 class Model(nn.Module):
+    """
+    Base Autoencoder-model
+    """
     def __init__(self, in_and_out_features):
         super().__init__()
         self.in_and_out_features = in_and_out_features
@@ -33,6 +36,9 @@ class Model(nn.Module):
         )
 
     def forward(self, x):
+        """
+        Runs encoding and decoding
+        """
         x = self.sequential(x)
         return x
 
