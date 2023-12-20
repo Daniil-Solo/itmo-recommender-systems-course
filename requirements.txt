@@ -4,3 +4,4 @@ fastapi==0.104.1
 pydantic-settings==2.1.0
 lightfm==1.17
 faiss-cpu==1.7.4
+torch==2.1.2
