@@ -24,6 +24,7 @@ class Model(nn.Module):
     """
     Base Autoencoder-model
     """
+
     def __init__(self, in_and_out_features):
         super().__init__()
         self.in_and_out_features = in_and_out_features

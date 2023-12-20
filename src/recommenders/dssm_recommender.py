@@ -3,6 +3,7 @@ import json
 import faiss
 import numpy as np
 from src.recommenders.base_recommender import FilterViewedAndPopularRecommender
+
 # pylint: disable=duplicate-code
 DIR_PATH = "src/recommenders/artefacts"
 ITEM_INV_MAPPING_PATH = f"{DIR_PATH}/lightfm_item_inv_mappings.json"

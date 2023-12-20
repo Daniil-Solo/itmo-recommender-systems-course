@@ -14,7 +14,7 @@ RECOMMENDERS: list[type[BaseRecommender]] = [
     LightFMRecommender,
     HNSWLightFMRecommender,
     AutoEncoderRecommender,
-    DSSMRecommender
+    DSSMRecommender,
 ]
 
 
