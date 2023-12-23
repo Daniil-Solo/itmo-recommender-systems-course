@@ -12,6 +12,7 @@ uvicorn = "^0.24.0.post1"
 fastapi = "^0.104.1"
 pydantic-settings = "^2.1.0"
 faiss-cpu = "^1.7.4"
+torch = "^2.1.2"
 
 
 [tool.poetry.group.dev.dependencies]
