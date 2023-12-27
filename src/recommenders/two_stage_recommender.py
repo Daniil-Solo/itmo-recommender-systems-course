@@ -12,7 +12,6 @@ class TwoStageRecommender(BaseRecommender):
     Recommendation model with random prediction of items
     """
 
-    N_MAX_ITEMS = 100
     MODEL_NAME = "two_stages"
 
     def __init__(self):
@@ -25,8 +24,5 @@ class TwoStageRecommender(BaseRecommender):
         Returns a random list of item IDs recommended
         to the user with id 'user_id'
         """
-        try:
-            items = self.predicts[str(user_id)]
-        except KeyError:
-            items = self.predicts[str(50000)]
+        items = self.predicts[str(user_id)]
         return items
