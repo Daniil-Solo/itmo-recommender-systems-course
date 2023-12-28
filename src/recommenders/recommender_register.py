@@ -6,6 +6,7 @@ from src.recommenders.lightfm_recommender import LightFMRecommender
 from src.recommenders.hnsw_lightfm_recommender import HNSWLightFMRecommender
 from src.recommenders.autoencoder_recommender import AutoEncoderRecommender
 from src.recommenders.dssm_recommender import DSSMRecommender
+from src.recommenders.two_stage_recommender import TwoStageRecommender
 
 
 RECOMMENDERS: list[type[BaseRecommender]] = [
@@ -15,6 +16,7 @@ RECOMMENDERS: list[type[BaseRecommender]] = [
     HNSWLightFMRecommender,
     AutoEncoderRecommender,
     DSSMRecommender,
+    TwoStageRecommender,
 ]
 
 
